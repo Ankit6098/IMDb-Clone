@@ -9,8 +9,22 @@ const searchSlogon = document.querySelector('.search-slogon');
 const homeContainer = document.querySelector('.home-container');
 const searchBody = document.querySelector('.search-body');
 
-const apiUrl = "https://www.omdbapi.com/?s="
-const apiKey = "&apikey=72b8c020"
+const apiUrl = "https://www.omdbapi.com/?s=";
+// const apiKey = "&apikey=72b8c020";
+
+// website logo 
+
+const websiteLogo = document.querySelector('.website-logo');
+
+websiteLogo.addEventListener('click', () => {
+    homeContainer.classList.add('active');
+    searchBody.classList.remove('active');
+    home.classList.add('active');
+    search.classList.remove('active');
+    watchlist.classList.remove('active');
+    favourite.classList.remove('active');
+    contactUs.classList.remove('active');
+});
 
 async function fetchMovies() {
     const response = await fetch(apiUrl + `${searchInput.value.trim()}` + apiKey);
@@ -35,23 +49,8 @@ function userInput() {
             searchSlogon.style.display = "none";
             searchbarContainer.style.marginBottom = "0px";
             moviesCardContainer.style.display = "flex";
-            
         }
         fetchMovies();
-        // fetch(apiUrl + `${searchInput.value}` + apiKey)
-        // .then(response => response.json())
-        // .then(function(data) {
-        //     if (data.Response == "False") {
-        //         moviesCardContainer.innerHTML = `
-        //         <div class="no-movie-found">
-        //             <img src="https://cdn-icons-png.flaticon.com/512/7465/7465691.png"></img>
-        //         </div>
-        //         `;
-        //     } else {
-        //         renderMovies(data.Search);
-        //     }
-        // })
-        // .catch(error => console.log(error));
     });
 }
 
@@ -159,51 +158,142 @@ function renderMovies(movies) {
         fetch(`https://www.omdbapi.com/?i=${movies[i].imdbID}&apikey=72b8c020`)
         .then(response => response.json())
         .then(function(data) {
+            console.log(data);
 
-            // movie poster
-            if (data.Poster == "N/A") {
-                data.Poster = "https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg";
+            // movie genre
+            if (data.Genre == "N/A") {
+                data.Genre = "";
             } else {
-                data.Poster = data.Poster;
+                data.Genre = data.Genre;
+            }
+
+            // movie plot
+            if (data.Plot == "N/A") {
+                data.Plot = "";
+            } else {
+                data.Plot = data.Plot;
+            }
+
+            // movie ratings
+            if (data.imdbRating == "N/A") {
+                data.imdbRating = "";
+            } else if (data.imdbRating >= 9) {
+                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+            } else if (data.imdbRating >= 7) {
+                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+            } else if (data.imdbRating >= 5) {
+                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+            } else if (data.imdbRating >= 3) {
+                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+            } else if (data.imdbRating >= 1) {
+                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i>`
+            }
+
+            // movie year
+
+            if (data.Year == "N/A") {
+                data.Year = "";
+            } else {
+                data.Year = data.Year;
+            }
+
+            // movie rated
+
+            if (data.Rated == "N/A") {
+                data.Rated = "Not Rated";
+            } else {
+                data.Rated = data.Rated;
             }
             
             // adding movie card
             const element = document.createElement('div');
             element.classList.add('movie-card');
+            if (data.Poster == "N/A") {
+                element.innerHTML = `
+                    <div class="no-poster-card">
+                        <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
+                        <div class="no-poster-movie-info-container">
+                            <div class="card-actions">
+                                <div class="like-container">
+                                    <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                                </div>
+                                <div class="watchlist-button-container">
+                                    <i class="fa-sharp fa-solid fa-bookmark"></i>
+                                </div>
+                            </div>
+                            <div class="movie-title-container">
+                                <h3 class="movie-title">${data.Title}</h3>
+                            </div>
+                            <div class="movie-year-rating-container">
+                                <p class="movie-rating">${data.imdbRating}</p>
+                                <p class="movie-year">${data.Year}</p>
+                                <p class="movie-rated">${data.Rated}</p>
+                            </div>
+                            <div class="movie-plot-container">
+                                <p class="movie-plot">${data.Plot}</p>
+                            </div>
+                            <div class="movie-genre-container">
+                                <p class="movie-genre">${data.Genre}</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            } else {
             element.innerHTML = `
-            <div class="card">
-                <div class="movie-image-container">
-                    <img class="movie-image" src="${data.Poster}"></img>
-                </div>
-                <div class="movie-details-container">
-                    <div class="like-container">
-                        <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                <div class="card">
+                    <div class="movie-image-container">
+                        <img class="movie-image" src="${data.Poster}"></img>
                     </div>
-                    <div class="add-to-watchlist-button-container">
-                        <i class="fa-sharp fa-solid fa-bookmark"></i>
+                    <div class="card-actions">
+                        <div class="like-container">
+                            <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                        </div>
+                        <div class="watchlist-button-container">
+                            <i class="fa-sharp fa-solid fa-bookmark"></i>
+                        </div>
+                    </div>
+                    <div class="movie-info-container">
+                        <div class="movie-title-container">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            `;
-            moviesCardContainer.appendChild(element);
+            `
+        }
+        moviesCardContainer.appendChild(element);
         })
     }
 }
 
 
-// // greeting the user
+// watchlist button
 
-// const greeting = document.querySelector('.greet');
+// const watchList = document.querySelector('.watchlist-button-container');
 
-// const date = new Date();
-// const hour = date.getHours();
+// watchList.addEventListener('click', () => {
+//     watchList.classList.toggle('active');
+// })
 
-// if (hour > 4 && hour < 12) {
-//     greeting.innerHTML = "Good Morning";
-// } else if (hour > 12 && hour < 18) {
-//     greeting.innerHTML = "Good Afternoon";
-// } else if (hour > 18 && hour < 22) {
-//     greeting.innerHTML = "Good Evening";
-// } else {
-//     greeting.innerHTML = "Good Night";
-// }
+
+// function to get rating is in decimal or not
+
+function isDecimal(n) {
+    return n != "" && Number(n) == n && n % 1 !== 0;
+}
+
+
+// console the developer info
+
+console.log("%c Hey! it's Ankit Vishwakarma,", "color : #00000; font-size : 1rem; font-weight : bold;");
+console.log("%c Passionate Full Stack Developer.", "color : #00000; font-size : 0.7rem; font-weight : bold;");
