@@ -10,7 +10,7 @@ const homeContainer = document.querySelector('.home-container');
 const searchBody = document.querySelector('.search-body');
 
 const apiUrl = "https://www.omdbapi.com/?s=";
-// const apiKey = "&apikey=72b8c020";
+const apiKey = "&apikey=72b8c020";
 
 // website logo 
 
