@@ -21,6 +21,8 @@ body {
     align-items: center;
 }
 
+/* navbar section */
+
 nav {
     display: flex;
     justify-content: center;
@@ -74,27 +76,22 @@ li {
 
 #home.active {
     color: red;
-    /* font-weight: bold; */
 }
 
 #search.active {
     color: red;
-    /* font-weight: bold; */
 }
 
 #watchlist.active {
     color: red;
-    /* font-weight: bold; */
 }
 
 #favourite.active {
     color: red;
-    /* font-weight: bold; */
 }
 
 #contact-us.active {
     color: red;
-    /* font-weight: bold; */
 }
 
 .some-usefull-links {
@@ -157,6 +154,7 @@ li {
     font-weight: 600;
     margin-top: 50px;
     cursor: pointer;
+    box-shadow: 5px 5px 10px #030202;
     transition: all 0.5s ease-in-out; 
 }
 
@@ -173,7 +171,6 @@ li {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* height: 20vh; */
     position: absolute;
     top: 10%;
     display: none;
@@ -354,6 +351,7 @@ input:focus {
     border-radius: 19px;
     opacity: 0;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .movie-info-container:hover {
@@ -398,6 +396,7 @@ input:focus {
     background-color: rgba(0, 0, 0, 0.9);
     border-radius: 19px;
     transition: all 0.3s ease-in-out;
+    cursor: pointer;
 }
 
 .movie-title {
@@ -447,6 +446,289 @@ input:focus {
 
 .movie-genre {
     font-size: 0.7rem;
+}
+
+.movie-more-info-container {
+    width: 60vw;
+    height: 75vh;
+    background-color: #060a0b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    color: white;
+    position: absolute;
+    top: 2%;
+    translate: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+}
+
+.movie-more-info {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.movie-more-info-image-container {
+    width: 40%;
+    height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+.movie-more-info-image {
+    width: 75%;
+    height: 75%;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px #000000;
+}
+
+.movie-more-info-info-container {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.movie-more-info-title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.movie-more-info-title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.movie-more-info-genre {
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #474747;
+    padding: 2px 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.movie-more-info-rated {
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #474747;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+.movie-more-info-year {
+    font-size: 0.8rem;
+    margin-top: 9px;
+}
+
+.movie-more-info-year-rating-container {
+    margin-bottom: 10px;
+}
+
+.movie-more-info-rating-number {
+    font-size: 0.9rem;
+}
+
+.movie-more-info-genre-container {
+    margin-bottom: 10px;
+}
+
+.movie-more-info-plot {
+    font-size: 0.9rem;
+    letter-spacing: 0px;
+}
+
+.movie-more-info-plot-container {
+    margin-bottom: 10px;
+}
+
+.movie-more-info-actors-container {
+    margin-bottom: 10px;
+}
+
+.movie-more-info-awards-container {
+    margin-bottom: 10px;
+}
+
+.action-buttons-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 20px;
+}
+
+.add-to-watchlist-button {
+    width: 100%;
+    height: 100%;
+    background-color: #e6b91f;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 5px 5px 10px black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-to-watchlist-button:hover {
+    background-color: #f0c949;
+    color: black;
+}
+
+.add-to-favorites-button {
+    width: 100%;
+    height: 100%;
+    background-color: #e6b91f;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 5px 5px 10px black;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.add-to-favorites-button:hover {
+    background-color: #f0c949;
+    color: black;
+}
+
+.close-more-info-container {
+    position: absolute;
+    top: -0%;
+    right: 0;
+    margin: 20px;
+    cursor: pointer;
+}
+
+
+/* watchlist section */
+
+.watchlist-body {
+    width: 90vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    display: none;
+    position: absolute;
+    top: 12%;
+}
+
+.watchlist-body.active {
+    display: flex;
+}
+
+.watchlist-body::-webkit-scrollbar {
+    display: none;
+}
+
+.watchlist-card-container {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.watchlist-movie-card {
+    width: 15vw;
+    height: 45vh;
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: 10px 10px 20px #000000;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.watchlist-movie-card:hover {
+    transform: scale(1.01);
+}
+
+
+/* favourite section */
+
+.favourite-body {
+    width: 90vw;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 3rem;
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    display: none;
+    position: absolute;
+    top: 12%;
+}
+
+.favourite-body.active {
+    display: flex;
+}
+
+.favourite-body::-webkit-scrollbar {
+    display: none;
+}
+
+.favourite-card-container {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.no-movie-in-watchlist-text {
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.favourite-movie-card {
+    width: 15vw;
+    height: 45vh;
+    background-color: #1a1a1a;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: 10px 10px 20px #000000;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.favourite-movie-card:hover {
+    transform: scale(1.01);
 }
 
 
