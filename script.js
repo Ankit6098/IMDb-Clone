@@ -69,6 +69,7 @@ const searchSlogon = document.querySelector('.search-slogon');
 
 function userInput() {
     searchInput.addEventListener('input', () => {
+        searchBody.style.height = "90vh";
         if (searchInput.value == "") {
             moviesCardContainer.style.display = "none";
         } else {
@@ -486,7 +487,7 @@ function addMovieToFavouriteList(movieId) {
 
     if (movieMoreInfoContainer.style.opacity == "1") {
         const movieMoreInfoFavoritelistButton = document.getElementById(`_favoriteslist-button-${movieId}`);
-        if (fa.includes(movieId)) {
+        if (favouriteListLocalStorage.includes(movieId)) {
             movieMoreInfoFavoritelistButton.innerHTML = "Add to Favoritelist";
         } else {
             movieMoreInfoFavoritelistButton.innerHTML = "Remove From Favoritelist";
