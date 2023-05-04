@@ -21,6 +21,19 @@ body {
     align-items: center;
 }
 
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #181818;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #e6b91f;
+    border-radius: 10px;
+}
+
 /* navbar section */
 
 nav {
@@ -458,7 +471,7 @@ input:focus {
     border-radius: 20px;
     color: white;
     position: absolute;
-    top: 2%;
+    top: 15%;
     translate: translate(-50%, -50%);
     opacity: 0;
     pointer-events: none;
@@ -714,6 +727,12 @@ input:focus {
     letter-spacing: 1px;
 }
 
+.no-movie-in-favouriteList-text {
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
 .favourite-movie-card {
     width: 15vw;
     height: 45vh;
@@ -735,7 +754,7 @@ input:focus {
 /* footer */
 
 footer {
-    width: 100%;
+    width: 100vw;
     height: 2.5vh;
     background-color: #000000;
     display: flex;
@@ -749,4 +768,140 @@ footer {
     color: lightgray;
     font-size: 0.6rem;
     font-weight: 600;
+}
+
+
+/* Responsive */
+
+/* laptop */
+
+/* movie card */
+
+@media screen and (max-width: 1400px){
+
+    input {
+        height: 6vh;
+        padding: 10px 60px;
+    }
+
+    .search-icon-container {
+        right: -8%;
+    }
+
+    .mic-search-icon-container {
+        left: -8%;
+    }
+
+    .movies-card-container {
+        height: 75vh;
+    }
+
+    .movie-title  {
+        font-size: 0.9rem;
+    }
+
+    .movie-title span {
+        font-size: 0.5rem;
+    }
+
+    .movie-year-rating-container {
+        width: 14vw;
+        font-size: 0.8rem;
+    }
+
+    .movie-plot {
+        font-size: 0.6rem;
+    }
+
+    .movie-genre {
+        font-size: 0.7rem;
+    }
+
+    /* movie more card */
+
+    .movie-more-info-info-container {
+        font-size: 0.6rem;
+    }
+
+    .movie-more-info-title {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+    }
+
+    .movie-more-info-rating {
+        font-size: 0.8rem;
+    }
+
+    .movie-more-info-rating-number {
+        font-size: 0.7rem;
+    }
+
+    .movie-more-info-plot {
+        font-size: 0.8rem;
+    }
+
+    .movie-more-info-title {
+        font-size: 1rem;
+    }
+
+    .movie-more-info-genre {
+        font-size: 0.6rem;
+    }
+
+    .movie-more-info-rated {
+        font-size: 0.6rem;
+    }
+
+    /* movie more info button */
+
+    .add-to-watchlist-button {
+        width: 100%;
+        height: 100%;
+        background-color: #e6b91f;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 5px 5px 10px black;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .add-to-favorites-button {
+        width: 100%;
+        height: 100%;
+        background-color: #e6b91f;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        box-shadow: 5px 5px 10px black;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+
+.watchlist-button-image {
+    position: absolute;
+    top: -3px;
+    left: 10%;
+    width: 30px;
+    height: 30px;
+    transition: all 0.3s ease-in-out;
+    filter: brightness(0) invert(1);
+}
+
+.watchlist-button-image.active {
+    position: absolute;
+    top: 0;
+    left: 10%;
+    filter: brightness(1) invert(0);
+    transform: rotate(0deg);
 }

@@ -7,27 +7,16 @@ const apiUrl = "https://www.omdbapi.com/?s=";
 const apiKey = "&apikey=72b8c020";
 // const apiKey = "&apikey=500472f0";
 
-let watchlistMoviesArr = [];    // watchlist movies array
-let favouriteMoviesArr = [];    // favourite movies array
-
 
 // website logo 
-
 const websiteLogo = document.querySelector('.website-logo');
 
 websiteLogo.addEventListener('click', () => {
-    homeContainer.classList.add('active');
-    searchBody.classList.remove('active');
-    home.classList.add('active');
-    search.classList.remove('active');
-    watchlist.classList.remove('active');
-    favourite.classList.remove('active');
-    contactUs.classList.remove('active');
+    window.location.reload();
 });
 
 
 // voice search
-
 const searchInput = document.getElementById('search-input');
 const voiceSearch = document.querySelector('.mic-search-icon-container');
 const micIcon = document.querySelector('.mic-icon');
@@ -58,7 +47,6 @@ voiceSearch.addEventListener('click', () => {
 
 
 // fetch movies through api
-
 async function fetchMovies() {
     const response = await fetch(apiUrl + `${searchInput.value.trim()}` + apiKey);
     const data = await response.json();
@@ -75,7 +63,6 @@ async function fetchMovies() {
 
 
 // fetch user input
-
 const searchbarContainer = document.querySelector('.searchbar-container');
 const moviesCardContainer = document.querySelector('.movies-card-container');
 const searchSlogon = document.querySelector('.search-slogon');
@@ -97,7 +84,6 @@ userInput();
 
 
 // navbar controllers
-
 const home = document.getElementById('home');
 const search = document.getElementById('search');
 const watchlist = document.getElementById('watchlist');
@@ -168,7 +154,6 @@ contactUs.addEventListener('click', () => {
 
 
 // home page
-
 const homeSearchButton = document.querySelector('.home-search-button');
 
 homeSearchButton.addEventListener('click', () => {
@@ -183,7 +168,6 @@ homeSearchButton.addEventListener('click', () => {
 
 
 // movies card
-
 function renderMovies(movies) {
     const moviesCardContainer = document.querySelector('.movies-card-container');
     moviesCardContainer.innerHTML = '';
@@ -236,79 +220,19 @@ function renderMovies(movies) {
                 data.Rated = data.Rated;
             }
             
+            
             // adding movie card
             const element = document.createElement('div');
             element.classList.add('movie-card');
-            if (data.Poster == "N/A") {
-                element.innerHTML = `
-                    <div class="no-poster-card">
-                        <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
-                        <div class="no-poster-movie-info-container">
-                            <div class="card-actions">
-                                <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
-                                    <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
-                                </div>
-                                <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
-                                    <i class="fa-sharp fa-solid fa-bookmark"></i>
-                                </div>
-                            </div>
-                            <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
-                                <h3 class="movie-title">${data.Title}</h3>
-                            </div>
-                            <div class="movie-year-rating-container">
-                                <p class="movie-rating">${data.imdbRating}</p>
-                                <p class="movie-year">${data.Year}</p>
-                                <p class="movie-rated">${data.Rated}</p>
-                            </div>
-                            <div class="movie-plot-container">
-                                <p class="movie-plot">${data.Plot}</p>
-                            </div>
-                            <div class="movie-genre-container">
-                                <p class="movie-genre">${data.Genre}</p>
-                            </div>
-                        </div>
-                    </div>
-                `
-            } else {
-            element.innerHTML = `
-                <div class="card">
-                    <div class="movie-image-container">
-                        <img class="movie-image" src="${data.Poster}"></img>
-                    </div>
-                    <div class="card-actions">
-                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
-                            <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
-                        </div>
-                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
-                            <i class="fa-sharp fa-solid fa-bookmark"></i>
-                        </div>
-                    </div>
-                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
-                        <div class="movie-title-container">
-                            <h3 class="movie-title">${data.Title}</h3>
-                        </div>
-                        <div class="movie-year-rating-container">
-                            <p class="movie-rating">${data.imdbRating}</p>
-                            <p class="movie-year">${data.Year}</p>
-                            <p class="movie-rated">${data.Rated}</p>
-                        </div>
-                        <div class="movie-plot-container">
-                            <p class="movie-plot">${data.Plot}</p>
-                        </div>
-                        <div class="movie-genre-container">
-                            <p class="movie-genre">${data.Genre}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-        }
-        moviesCardContainer.appendChild(element);
+
+            renderCard(element, data);
+            moviesCardContainer.appendChild(element);
         })
     }
 }
 
-// function to get the movie more info
 
+// function to get the movie more info
 function moreInfo(imdbID) {
     movieMoreInfoContainer.style.opacity = "1";
     movieMoreInfoContainer.style.pointerEvents = "all";
@@ -338,7 +262,6 @@ function moreInfo(imdbID) {
         }
 
         // storging movie rating
-
         let movieRating = data.imdbRating;
 
         // movie ratings
@@ -426,8 +349,483 @@ function moreInfo(imdbID) {
             data.Metascore = data.Metascore;
         }
 
-    const element = document.createElement('div');
-    element.classList.add('movie-more-info');
+        const element = document.createElement('div');
+        element.classList.add('movie-more-info');
+
+        // rendering movie more info
+        renderMovieMoreInfo(element, data, movieRating);
+        movieMoreInfoContainer.appendChild(element);
+
+        // handling watchlist and favorite list innerHTML
+        if (watchlistLocalStorage.includes(data.imdbID)) {
+            document.querySelector(".add-to-watchlist-button").innerHTML = "Remove from Watchlist";
+        } else {
+            document.querySelector(".add-to-watchlist-button").innerHTML = "Add to Watchlist";
+        }
+        if (favouriteListLocalStorage.includes(data.imdbID)) {
+            document.querySelector(".add-to-favorites-button").innerHTML = "Remove from Favorites";
+        } else {
+            document.querySelector(".add-to-favorites-button").innerHTML = "Add to Favorites";
+        }
+    })
+}
+
+
+// function to close more info
+function closeMoreInfo() {
+    movieMoreInfoContainer.style.opacity = "0";
+    movieMoreInfoContainer.style.pointerEvents = "none";
+    movieMoreInfoContainer.style.zIndex = "-1";
+    navContainer.style.filter = "blur(0px)";
+    searchInput.style.filter = "blur(0px)";
+    searchIcon.style.filter = "blur(0px)";
+    searchIcon.style.zIndex = "1";
+    micIcon.style.filter = "blur(0px)";
+    moviesCardContainer.style.filter = "blur(0px)";
+    navContainer.style.pointerEvents = "auto";
+    searchInput.style.pointerEvents = "auto";
+    searchIcon.style.pointerEvents = "auto";
+    micIcon.style.pointerEvents = "auto";
+    moviesCardContainer.style.pointerEvents = "auto";
+    movieMoreInfoContainer.innerHTML = "";
+}
+
+
+// funtion to store watchlist in local storage
+let watchlistLocalStorage = JSON.parse(localStorage.getItem('watchlistLocalStorage'));
+
+if(watchlistLocalStorage == null) {
+    watchlistLocalStorage = [];
+}
+
+function addMovieToWatchlist(movieId) {
+
+    if (movieMoreInfoContainer.style.opacity == "1") {
+        const movieMoreInfoWatchlistButton = document.getElementById(`_watchlist-button-${movieId}`);
+        if (watchlistLocalStorage.includes(movieId)) {
+            movieMoreInfoWatchlistButton.innerHTML = "Add to Watchlist";
+        } else {
+            movieMoreInfoWatchlistButton.innerHTML = "Remove From Watchlist";
+        }
+    }
+
+    const watchlistIcon = document.getElementById(`_watchlistIcon-${movieId}`);
+    watchlistIcon.classList.toggle("active");
+    if (watchlistIcon.classList.contains("active")) {
+        watchlistIcon.src = "https://cdn-icons-png.flaticon.com/512/786/786453.png";
+    } else {
+        watchlistIcon.src = "https://cdn-icons-png.flaticon.com/512/4485/4485491.png";
+    }
+
+    let index = watchlistLocalStorage.indexOf(movieId);
+    if (index !== -1) {
+        watchlistLocalStorage.splice(index, 1);
+        localStorage.setItem('watchlistLocalStorage', JSON.stringify(watchlistLocalStorage));
+        showWatchlist();
+        showFavouriteList();
+        return;
+    }
+
+    watchlistLocalStorage.push(movieId);
+    localStorage.setItem('watchlistLocalStorage', JSON.stringify(watchlistLocalStorage));
+    showWatchlist();
+    showFavouriteList();
+}
+
+
+// funtion to show watchlist
+function showWatchlist() {
+    watchlistCardContainer.innerHTML = "";
+    if (watchlistLocalStorage.length == "") {
+        watchlistCardContainer.innerHTML = `
+            <div class="no-movie-in-watchlist-container">
+                <h2 class="no-movie-in-watchlist-text">No Movie in Watchlist</h2>
+            </div>
+        `
+    } else {
+        for (let i = 0; i < watchlistLocalStorage.length; i++) {
+            fetch(`https://www.omdbapi.com/?i=${watchlistLocalStorage[i]}&apikey=72b8c020`)
+            .then((response) => response.json())
+            .then((data) => {
+
+                // movie ratings
+                if (data.imdbRating == "N/A") {
+                    data.imdbRating = "";
+                } else if (data.imdbRating >= 9) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 7) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 5) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 3) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 1) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i>`
+                }
+
+                let element = document.createElement('div');
+                element.classList.add('watchlist-movie-card');
+
+                renderCard(element, data);
+                watchlistCardContainer.appendChild(element);
+            })
+        }
+    }
+}
+showWatchlist();
+
+
+// funtion to store favourite list in local storage
+let favouriteListLocalStorage = JSON.parse(localStorage.getItem('favouriteListLocalStorage'));
+
+if(favouriteListLocalStorage == null) {
+    favouriteListLocalStorage = [];
+}
+
+function addMovieToFavouriteList(movieId) {
+
+    if (movieMoreInfoContainer.style.opacity == "1") {
+        const movieMoreInfoFavoritelistButton = document.getElementById(`_favoriteslist-button-${movieId}`);
+        if (fa.includes(movieId)) {
+            movieMoreInfoFavoritelistButton.innerHTML = "Add to Favoritelist";
+        } else {
+            movieMoreInfoFavoritelistButton.innerHTML = "Remove From Favoritelist";
+        }
+    }
+
+    const favouritelistIcon = document.getElementById(`_favouritelistIcon-${movieId}`);
+    favouritelistIcon.classList.toggle('active');
+    if (favouritelistIcon.classList.contains('active')) {
+        favouritelistIcon.src="https://cdn-icons-png.flaticon.com/512/210/210545.png";
+    } else {
+        favouritelistIcon.src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png";
+    }
+    
+    let index = favouriteListLocalStorage.indexOf(movieId);
+    if (index !== -1) {
+        favouriteListLocalStorage.splice(index, 1);
+        localStorage.setItem('favouriteListLocalStorage', JSON.stringify(favouriteListLocalStorage));
+        showFavouriteList();
+        showWatchlist();
+        return;
+    }
+
+    favouriteListLocalStorage.push(movieId);
+    localStorage.setItem('favouriteListLocalStorage', JSON.stringify(favouriteListLocalStorage));
+    showFavouriteList();
+    showWatchlist();
+}
+
+
+// funtion to show favourite list
+function showFavouriteList() {
+    favouritelistCardContainer.innerHTML = "";
+    if (favouriteListLocalStorage.length == "") {
+        favouritelistCardContainer.innerHTML = `
+            <div class="no-movie-in-favouriteList-container">
+                <h2 class="no-movie-in-favouriteList-text">No Movie in FavourList</h2>
+            </div>
+        `
+    } else {
+        for (let i = 0; i < favouriteListLocalStorage.length; i++) {
+            fetch(`https://www.omdbapi.com/?i=${favouriteListLocalStorage[i]}&apikey=72b8c020`)
+            .then((response) => response.json())
+            .then((data) => {
+
+                // movie ratings
+                if (data.imdbRating == "N/A") {
+                    data.imdbRating = "";
+                } else if (data.imdbRating >= 9) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 7) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 5) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 3) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
+                } else if (data.imdbRating >= 1) {
+                    data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i>`
+                }
+
+                let element = document.createElement('div');
+                element.classList.add('favourite-list-movie-card');
+
+                renderCard(element, data);
+                favouritelistCardContainer.appendChild(element);
+            })
+        }
+    }
+}
+showFavouriteList();
+
+
+
+// console the developer info
+console.log("%c Hey! it's Ankit Vishwakarma,", "color : #00000; font-size : 1rem; font-weight : bold;");
+console.log("%c Passionate Full Stack Developer.", "color : #00000; font-size : 0.7rem; font-weight : bold;");
+
+// funtion to render movie card
+function renderCard(element, data) {
+    if (watchlistLocalStorage.includes(data.imdbID) && favouriteListLocalStorage.includes(data.imdbID)) {
+        if (data.Poster == "N/A") {
+            element.innerHTML = `
+                <div class="no-poster-card">
+                    <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
+                    <div class="no-poster-movie-info-container">
+                        <div class="card-actions">
+                            <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                                <img class="like-image active" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/210/210545.png"></img>
+                            </div>
+                            <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
+                                <img class="watchlist-button-image active" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/786/786453.png"></img>
+                            </div>
+                        </div>
+                        <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        } else {
+            element.innerHTML = `
+                <div class="card">
+                    <div class="movie-image-container">
+                        <img class="movie-image" src="${data.Poster}"></img>
+                    </div>
+                    <div class="card-actions">
+                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                            <img class="like-image active" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/210/210545.png"></img>
+                        </div>
+                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
+                            <img class="watchlist-button-image active" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/786/786453.png"></img>
+                        </div>
+                    </div>
+                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
+                        <div class="movie-title-container">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    } else if (watchlistLocalStorage.includes(data.imdbID)) {
+        if (data.Poster == "N/A") {
+            element.innerHTML = `
+                <div class="no-poster-card">
+                    <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
+                    <div class="no-poster-movie-info-container">
+                        <div class="card-actions">
+                            <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                                <img class="like-image" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                            </div>
+                            <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
+                                <img class="watchlist-button-image active" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/786/786453.png"></img>
+                            </div>
+                        </div>
+                        <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        } else {
+            element.innerHTML = `
+                <div class="card">
+                    <div class="movie-image-container">
+                        <img class="movie-image" src="${data.Poster}"></img>
+                    </div>
+                    <div class="card-actions">
+                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                            <img class="like-image" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                        </div>
+                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
+                            <img class="watchlist-button-image active" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/786/786453.png"></img>
+                        </div>
+                    </div>
+                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
+                        <div class="movie-title-container">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    } else if (favouriteListLocalStorage.includes(data.imdbID)) {
+        if (data.Poster == "N/A") {
+            element.innerHTML = `
+                <div class="no-poster-card">
+                    <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
+                    <div class="no-poster-movie-info-container">
+                        <div class="card-actions">
+                            <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                                <img class="like-image active" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/210/210545.png"></img>
+                            </div>
+                            <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
+                                <img class="watchlist-button-image" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/4485/4485491.png"></img>
+                            </div>
+                        </div>
+                        <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        } else {
+            element.innerHTML = `
+                <div class="card">
+                    <div class="movie-image-container">
+                        <img class="movie-image" src="${data.Poster}"></img>
+                    </div>
+                    <div class="card-actions">
+                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                            <img class="like-image active" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/210/210545.png"></img>
+                        </div>
+                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
+                            <img class="watchlist-button-image" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/4485/4485491.png"></img>
+                        </div>
+                    </div>
+                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
+                        <div class="movie-title-container">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    } else {
+        if (data.Poster == "N/A") {
+            element.innerHTML = `
+                <div class="no-poster-card">
+                    <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
+                    <div class="no-poster-movie-info-container">
+                        <div class="card-actions">
+                            <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                                <img class="like-image" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                            </div>
+                            <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
+                                <img class="watchlist-button-image" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/4485/4485491.png"></img>
+                            </div>
+                        </div>
+                        <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        } else {
+            element.innerHTML = `
+                <div class="card">
+                    <div class="movie-image-container">
+                        <img class="movie-image" src="${data.Poster}"></img>
+                    </div>
+                    <div class="card-actions">
+                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
+                            <img class="like-image" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
+                        </div>
+                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
+                        <img class="watchlist-button-image" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/4485/4485491.png"></img>
+                        </div>
+                    </div>
+                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
+                        <div class="movie-title-container">
+                            <h3 class="movie-title">${data.Title}</h3>
+                        </div>
+                        <div class="movie-year-rating-container">
+                            <p class="movie-rating">${data.imdbRating}</p>
+                            <p class="movie-year">${data.Year}</p>
+                            <p class="movie-rated">${data.Rated}</p>
+                        </div>
+                        <div class="movie-plot-container">
+                            <p class="movie-plot">${data.Plot}</p>
+                        </div>
+                        <div class="movie-genre-container">
+                            <p class="movie-genre">${data.Genre}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        }
+    }
+}
+
+function renderMovieMoreInfo(element, data, movieRating) {
     element.innerHTML = `
         <div class="movie-more-info">
             <div class="movie-more-info-image-container">
@@ -502,12 +900,12 @@ function moreInfo(imdbID) {
                     <span class="movie-more-info-imdb-votes">${data.imdbVotes}</span>
                 </div>
 
-                <div class="action-buttons-container" onclick="addMovieToWatchlist('${data.imdbID}')">
-                    <div class="add-to-watchlist-container">
-                        <button class="add-to-watchlist-button">Add to Watchlist</button>
+                <div class="action-buttons-container">
+                    <div class="add-to-watchlist-container" onclick="addMovieToWatchlist('${data.imdbID}')">
+                        <button class="add-to-watchlist-button" id="_watchlist-button-${data.imdbID}">Add to Watchlist</button>
                     </div>
                     <div class="add-to-favorites-container" onclick="addMovieToFavouriteList('${data.imdbID}')">
-                        <button class="add-to-favorites-button">Add to Favorites</button>
+                        <button class="add-to-favorites-button" id="_favoriteslist-button-${data.imdbID}">Add to Favorites</button>
                     </div>
                 </div>
             </div>
@@ -516,292 +914,4 @@ function moreInfo(imdbID) {
             </div>
         </div>
     `
-    movieMoreInfoContainer.appendChild(element);
-    })
 }
-
-
-// function to close more info
-function closeMoreInfo() {
-    movieMoreInfoContainer.style.opacity = "0";
-    movieMoreInfoContainer.style.pointerEvents = "none";
-    movieMoreInfoContainer.style.zIndex = "-1";
-    navContainer.style.filter = "blur(0px)";
-    searchInput.style.filter = "blur(0px)";
-    searchIcon.style.filter = "blur(0px)";
-    searchIcon.style.zIndex = "1";
-    micIcon.style.filter = "blur(0px)";
-    moviesCardContainer.style.filter = "blur(0px)";
-    navContainer.style.pointerEvents = "auto";
-    searchInput.style.pointerEvents = "auto";
-    searchIcon.style.pointerEvents = "auto";
-    micIcon.style.pointerEvents = "auto";
-    moviesCardContainer.style.pointerEvents = "auto";
-    movieMoreInfoContainer.innerHTML = "";
-}
-
-
-// funtion to store watchlist in local storage
-let watchlistLocalStorage = JSON.parse(localStorage.getItem('watchlistLocalStorage'));
-
-if(watchlistLocalStorage == null) {
-    watchlistLocalStorage = [];
-}
-
-function addMovieToWatchlist(movieId) {
-    if (watchlistLocalStorage.includes(movieId)) {
-        // remove already added movie from watchlist
-        console.log("removed from watchlist");
-        watchlistLocalStorage.pop(movieId);
-        localStorage.setItem('watchlistLocalStorage', JSON.stringify(watchlistLocalStorage));
-        showWatchlist();
-        return;
-    }
-    watchlistLocalStorage.push(movieId);
-    console.log("added to watchlist");
-    localStorage.setItem('watchlistLocalStorage', JSON.stringify(watchlistLocalStorage));
-    showWatchlist();
-}
-
-
-// funtion to show watchlist
-function showWatchlist() {
-    watchlistCardContainer.innerHTML = "";
-    if (watchlistLocalStorage.length == "") {
-        watchlistCardContainer.innerHTML = `
-            <div class="no-movie-in-watchlist-container">
-                <h2 class="no-movie-in-watchlist-text">No Movie in Watchlist</h2>
-            </div>
-        `
-    } else {
-        for (let i = 0; i < watchlistLocalStorage.length; i++) {
-            fetch(`https://www.omdbapi.com/?i=${watchlistLocalStorage[i]}&apikey=72b8c020`)
-            .then((response) => response.json())
-            .then((data) => {
-
-            let element = document.createElement('div');
-            element.classList.add('watchlist-movie-card');
-
-            // movie ratings
-            if (data.imdbRating == "N/A") {
-                data.imdbRating = "";
-            } else if (data.imdbRating >= 9) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 7) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 5) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 3) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 1) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i>`
-            }
-
-            if (data.Poster == "N/A") {
-                element.innerHTML = `
-                    <div class="no-poster-card">
-                        <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
-                        <div class="no-poster-movie-info-container">
-                            <div class="card-actions">
-                                <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
-                                    <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
-                                </div>
-                                <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
-                                    <i class="fa-sharp fa-solid fa-bookmark"></i>
-                                </div>
-                            </div>
-                            <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
-                                <h3 class="movie-title">${data.Title}</h3>
-                            </div>
-                            <div class="movie-year-rating-container">
-                                <p class="movie-rating">${data.imdbRating}</p>
-                                <p class="movie-year">${data.Year}</p>
-                                <p class="movie-rated">${data.Rated}</p>
-                            </div>
-                            <div class="movie-plot-container">
-                                <p class="movie-plot">${data.Plot}</p>
-                            </div>
-                            <div class="movie-genre-container">
-                                <p class="movie-genre">${data.Genre}</p>
-                            </div>
-                        </div>
-                    </div>
-                `
-            } else {
-            element.innerHTML = `
-                <div class="card">
-                    <div class="movie-image-container">
-                        <img class="movie-image" src="${data.Poster}"></img>
-                    </div>
-                    <div class="card-actions">
-                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
-                            <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
-                        </div>
-                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
-                            <i class="fa-sharp fa-solid fa-bookmark"></i>
-                        </div>
-                    </div>
-                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
-                        <div class="movie-title-container">
-                            <h3 class="movie-title">${data.Title}</h3>
-                        </div>
-                        <div class="movie-year-rating-container">
-                            <p class="movie-rating">${data.imdbRating}</p>
-                            <p class="movie-year">${data.Year}</p>
-                            <p class="movie-rated">${data.Rated}</p>
-                        </div>
-                        <div class="movie-plot-container">
-                            <p class="movie-plot">${data.Plot}</p>
-                        </div>
-                        <div class="movie-genre-container">
-                            <p class="movie-genre">${data.Genre}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-            }
-            watchlistCardContainer.appendChild(element);
-            })
-        }
-    }
-}
-showWatchlist();
-
-
-// funtion to store favourite list in local storage
-let favouriteListLocalStorage = JSON.parse(localStorage.getItem('favouriteListLocalStorage'));
-
-if(favouriteListLocalStorage == null) {
-    favouriteListLocalStorage = [];
-}
-
-function addMovieToFavouriteList(movieId) {
-    if (favouriteListLocalStorage.includes(movieId)) {
-        // remove already added movie from favourite list
-        console.log("removed from favourite list");
-        favouriteListLocalStorage.pop(movieId);
-        localStorage.setItem('favouriteListLocalStorage', JSON.stringify(favouriteListLocalStorage));
-        showFavouriteList();
-        return;
-    }
-    favouriteListLocalStorage.push(movieId);
-    console.log("added to favourite list");
-    localStorage.setItem('favouriteListLocalStorage', JSON.stringify(favouriteListLocalStorage));
-    showFavouriteList();
-}
-
-
-// funtion to show favourite list
-function showFavouriteList() {
-    favouritelistCardContainer.innerHTML = "";
-    if (favouriteListLocalStorage.length == "") {
-        favouritelistCardContainer.innerHTML = `
-            <div class="no-movie-in-watchlist-container">
-                <h2 class="no-movie-in-watchlist-text">No Movie in FavourList</h2>
-            </div>
-        `
-    } else {
-        for (let i = 0; i < favouriteListLocalStorage.length; i++) {
-            fetch(`https://www.omdbapi.com/?i=${favouriteListLocalStorage[i]}&apikey=72b8c020`)
-            .then((response) => response.json())
-            .then((data) => {
-
-            // movie ratings
-            if (data.imdbRating == "N/A") {
-                data.imdbRating = "";
-            } else if (data.imdbRating >= 9) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 7) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 5) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 3) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i><i class="fa-solid fa-solid fa-star"></i>`
-            } else if (data.imdbRating >= 1) {
-                data.imdbRating = `<i class="fa-solid fa-solid fa-star"></i>`
-            }
-
-            let element = document.createElement('div');
-            element.classList.add('favourite-list-movie-card');
-            if (data.Poster == "N/A") {
-                element.innerHTML = `
-                    <div class="no-poster-card">
-                        <img class="no-poster-movie-image" src="https://static.displate.com/857x1200/displate/2022-04-15/7422bfe15b3ea7b5933dffd896e9c7f9_46003a1b7353dc7b5a02949bd074432a.jpg" alt="">
-                        <div class="no-poster-movie-info-container">
-                            <div class="card-actions">
-                                <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
-                                    <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
-                                </div>
-                                <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
-                                    <i class="fa-sharp fa-solid fa-bookmark"></i>
-                                </div>
-                            </div>
-                            <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
-                                <h3 class="movie-title">${data.Title}</h3>
-                            </div>
-                            <div class="movie-year-rating-container">
-                                <p class="movie-rating">${data.imdbRating}</p>
-                                <p class="movie-year">${data.Year}</p>
-                                <p class="movie-rated">${data.Rated}</p>
-                            </div>
-                            <div class="movie-plot-container">
-                                <p class="movie-plot">${data.Plot}</p>
-                            </div>
-                            <div class="movie-genre-container">
-                                <p class="movie-genre">${data.Genre}</p>
-                            </div>
-                        </div>
-                    </div>
-                `
-            } else {
-            element.innerHTML = `
-                <div class="card">
-                    <div class="movie-image-container">
-                        <img class="movie-image" src="${data.Poster}"></img>
-                    </div>
-                    <div class="card-actions">
-                        <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
-                            <img class="like-image" src="https://cdn-icons-png.flaticon.com/512/10037/10037207.png"></img>
-                        </div>
-                        <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
-                            <i class="fa-sharp fa-solid fa-bookmark"></i>
-                        </div>
-                    </div>
-                    <div class="movie-info-container" onclick="moreInfo('${data.imdbID}')">
-                        <div class="movie-title-container">
-                            <h3 class="movie-title">${data.Title}</h3>
-                        </div>
-                        <div class="movie-year-rating-container">
-                            <p class="movie-rating">${data.imdbRating}</p>
-                            <p class="movie-year">${data.Year}</p>
-                            <p class="movie-rated">${data.Rated}</p>
-                        </div>
-                        <div class="movie-plot-container">
-                            <p class="movie-plot">${data.Plot}</p>
-                        </div>
-                        <div class="movie-genre-container">
-                            <p class="movie-genre">${data.Genre}</p>
-                        </div>
-                    </div>
-                </div>
-            `
-            favouritelistCardContainer.appendChild(element);
-            }
-            })
-        }
-    }
-}
-showFavouriteList();
-
-
-
-// console the developer info
-console.log("%c Hey! it's Ankit Vishwakarma,", "color : #00000; font-size : 1rem; font-weight : bold;");
-console.log("%c Passionate Full Stack Developer.", "color : #00000; font-size : 0.7rem; font-weight : bold;");
-
-
-// event listener for click
-// document.addEventListener('click', (event) => {
-//     let target = event.target;
-//     console.log(target);
-// })
