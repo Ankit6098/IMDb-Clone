@@ -38,21 +38,19 @@ mobileMenuButton.addEventListener('click', () => {
     favouriteBody.style.filter = 'blur(5px)';
 })
 
-const mobileMenuCloseButton = document.querySelector('.mobile-menu-close-button');
-
-mobileMenuCloseButton.addEventListener('click', () => {
-    navUL.classList.remove('active');
-    homeContainer.style.zIndex = '1';
-    searchBody.style.zIndex = '1';
-    watchlistBody.style.zIndex = '1';
-    favouriteBody.style.zIndex = '1';
-    websiteLogo.style.filter = 'blur(0px)';
-    footer.style.filter = 'blur(0px)';
-    homeContainer.style.filter = 'blur(0px)';
-    searchBody.style.filter = 'blur(0px)';
-    watchlistBody.style.filter = 'blur(0px)';
-    favouriteBody.style.filter = 'blur(0px)';
-})
+function closeNavMenu() {
+        navUL.classList.remove('active');
+        homeContainer.style.zIndex = '1';
+        searchBody.style.zIndex = '1';
+        watchlistBody.style.zIndex = '1';
+        favouriteBody.style.zIndex = '1';
+        websiteLogo.style.filter = 'blur(0px)';
+        footer.style.filter = 'blur(0px)';
+        homeContainer.style.filter = 'blur(0px)';
+        searchBody.style.filter = 'blur(0px)';
+        watchlistBody.style.filter = 'blur(0px)';
+        favouriteBody.style.filter = 'blur(0px)';
+}
 
 
 // voice search
@@ -112,6 +110,8 @@ function userInput() {
 
         if (searchInput.value == "") {
             moviesCardContainer.style.display = "none";
+            searchSlogon.style.display = "block";
+            searchbarContainer.style.marginBottom = "50px";
         } else {
             searchbarContainer.style.marginTop = "0px";
             searchSlogon.style.display = "none";
@@ -148,6 +148,7 @@ home.addEventListener('click', () => {
     searchBody.classList.remove('active');
     watchlistBody.classList.remove('active');
     favouriteBody.classList.remove('active');
+    closeNavMenu();
 });
 
 search.addEventListener('click', () => {
@@ -160,6 +161,7 @@ search.addEventListener('click', () => {
     homeContainer.classList.remove('active');
     watchlistBody.classList.remove('active');
     favouriteBody.classList.remove('active');
+    closeNavMenu();
 });
 
 watchlist.addEventListener('click', () => {
@@ -172,6 +174,7 @@ watchlist.addEventListener('click', () => {
     contactUs.classList.remove('active');
     searchBody.classList.remove('active');
     homeContainer.classList.remove('active');
+    closeNavMenu();
 });
 
 favourite.addEventListener('click', () => {
@@ -184,14 +187,12 @@ favourite.addEventListener('click', () => {
     watchlist.classList.remove('active');
     contactUs.classList.remove('active');
     homeContainer.classList.remove('active');
+    closeNavMenu();
 });
 
 contactUs.addEventListener('click', () => {
     contactUs.classList.add('active');
-    home.classList.remove('active');
-    search.classList.remove('active');
-    watchlist.classList.remove('active');
-    favourite.classList.remove('active');
+    closeNavMenu();
 });
 
 
@@ -981,7 +982,7 @@ function successNoty(msg) {
     iziToast.success({
       title: msg,
     //   message: 'This is an Izzi Toast notification!',
-      position: 'bottomRight',
+      position: 'topRight',
     });
 }
 
@@ -990,6 +991,6 @@ function warningNoty(msg) {
     iziToast.warning({
       title: msg,
     //   message: 'This is an Izzi Toast notification!',
-      position: 'bottomRight',
+      position: 'topRight',
     });
 }

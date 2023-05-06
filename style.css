@@ -95,13 +95,6 @@ nav {
     display: none;
 }
 
-.mobile-menu-close-button {
-    position: absolute;
-    top: 5%;
-    right: 7%;
-    display: none;
-}
-
 .home.active {
     color: red;
 }
@@ -1036,10 +1029,6 @@ footer {
     }
 
     .mobile-navbar-button {
-        display: block;
-    }
-
-    .mobile-menu-close-button {
         display: block;
     }
 
