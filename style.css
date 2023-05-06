@@ -1150,7 +1150,7 @@ footer {
     .watchlist-card-container {
         flex-direction: column;
         flex-wrap: nowrap;
-        justify-content: initial;
+        justify-content: center;
         align-items: center;
     }
 
