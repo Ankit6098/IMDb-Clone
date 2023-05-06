@@ -74,6 +74,7 @@ nav {
     color: white;
     display: flex;
     font-size: 0.8em;
+    transition: all 0.3s ease-in-out;
 }
 
 .nav-ul a {
@@ -98,21 +99,8 @@ nav {
     position: absolute;
     top: 5%;
     right: 7%;
-}
-
-/* .mobile-navbar-container {
-    position: absolute;
-    top: 35%;
-    right: 10%;
-    width: 150px;
-    height: 200px;
-    border-radius: 10px;
-    background-color: black;
-    color: white;
-    z-index: 1;
-    transition: all 0.5s ease-in-out;
     display: none;
-} */
+}
 
 .home.active {
     color: red;
@@ -303,8 +291,8 @@ input:focus {
 }
 
 .card {
-    width: 15vw;
-    height: 45vh;
+    width: 300px;
+    height: 450px;
     background-color: #1a1a1a;
     border-radius: 20px;
     display: flex;
@@ -401,8 +389,8 @@ input:focus {
 }
 
 .no-poster-card {
-    width: 15vw;
-    height: 45vh;
+    width: 300px;
+    height: 450px;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -917,6 +905,96 @@ footer {
 }
 
 /* tablet */
+ 
+@media screen and (max-width: 950px) {
+
+    .logo-container img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .nav-ul {
+        font-size: 0.8rem;
+    }
+
+    .slogon-p {
+        font-size: 1.5rem;
+    }
+
+    .slogon-head {
+        font-size: 3.5rem;
+    }
+
+    .slogon-container {
+        width: 750px;
+    }
+
+    .slogon-p1 {
+        font-size: 1rem;
+    }
+
+    .home-search-button {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .home-search-button {
+        padding: 20px 35px;
+        font-size: 1.5rem;
+        border-radius: 15px;
+    }
+
+    .search-slogon {
+        width: 600px;
+        font-size: 0.9rem;
+    }
+
+    input {
+        width: 70vw;
+        height: 6vh;
+        padding: 10px 80px;
+        font-size: 1.5rem;
+    }
+
+    .search-icon-container {
+        right: -9%;
+    }
+
+    .fa-magnifying-glass {
+        font-size: 1.5rem;
+    }
+
+    .mic-search-icon-container {
+        left: -9%;
+    }
+
+    .mic-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .no-movie-found img {
+        width: 350px;
+        height: 350px;
+    }
+
+    .developer-name {
+        font-size: 0.8rem;
+    }
+
+    .movie-more-info-container {
+        width: 90%;
+        height: 55%;
+        top: 25%;
+    }
+
+    .movie-more-info-image-container {
+        width: 60%;
+        height: 70%;
+        justify-content: center;
+        align-items: center;
+    }
+}
 
 
 /* mobile */
@@ -961,41 +1039,9 @@ footer {
         display: block;
     }
 
-    /* .mobile-navbar-ul li {
-        font-size: 0.7rem;
-        font-weight: 600;
+    .mobile-menu-close-button {
+        display: block;
     }
-
-    .mobile-navbar-ul li a {
-        color: white;
-    }
-
-    .mobile-navbar-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        display: none;
-    }
-
-    .mobile-navbar-container.active {
-        display: flex;
-    }
-
-    .mobile-navbar-ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        display: none;
-    }
-
-    .mobile-navbar-ul.active {
-        display: flex;
-    }
-
-    .mobile-navbar-ul li {
-        margin: 5px;
-    } */
 
     .slogon-p {
         font-size: 0.6rem;
@@ -1016,6 +1062,7 @@ footer {
     .home-search-button {
         padding: 10px 20px;
         font-size: 0.9rem;
+        border-radius: 10px;
     }
 
     /* search page */
@@ -1029,14 +1076,24 @@ footer {
         width: 80vw;
         height: 6vh;
         padding: 10px 50px;
+        font-size: 0.8rem;
     }
 
     .search-icon-container {
         right: -11%;
     }
 
+    .fa-magnifying-glass {
+        font-size: 0.9rem;
+    }
+
     .mic-search-icon-container {
         left: -11%;
+    }
+
+    .mic-icon {
+        width: 25px;
+        height: 25px;
     }
 
     .movies-card-container {
@@ -1051,8 +1108,8 @@ footer {
     }
 
     .card {
-        width: 70vw;
-        height: 50vh;
+        width: 260px;
+        height: 400px;
     }
 
     .no-poster-card {
@@ -1070,6 +1127,10 @@ footer {
         justify-content: initial;
         flex-direction: column;
         overflow-y: scroll;
+    }
+
+    .movie-more-info::-webkit-scrollbar {
+        display: none;
     }
 
     .movie-more-info-container {
@@ -1101,6 +1162,11 @@ footer {
         flex-direction: column;
         flex-wrap: nowrap;
         justify-content: initial;
-        align-items: flex-start;
+        align-items: center;
+    }
+
+    .developer-name {
+        font-size: 0.5rem;
     }
 }
+

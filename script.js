@@ -10,10 +10,49 @@ const apiKey = "&apikey=72b8c020";
 
 // website logo 
 const websiteLogo = document.querySelector('.website-logo');
+const footer = document.querySelector('footer');
 
 websiteLogo.addEventListener('click', () => {
     window.location.reload();
 });
+
+
+// moblie navbar
+const mobileMenuButton = document.querySelector('.mobile-navbar-button');
+const navUL = document.querySelector('.nav-ul');
+
+
+mobileMenuButton.addEventListener('click', () => {
+    websiteLogo.style.pointerEvents = 'none';
+    navUL.classList.toggle('active');
+    homeContainer.style.zIndex = '-1';
+    searchBody.style.zIndex = '-1';
+    watchlistBody.style.zIndex = '-1';
+    favouriteBody.style.zIndex = '-1';
+    moviesCardContainer.style.zIndex = '-10';
+    websiteLogo.style.filter = 'blur(5px)';
+    footer.style.filter = 'blur(5px)';
+    homeContainer.style.filter = 'blur(5px)';
+    searchBody.style.filter = 'blur(5px)';
+    watchlistBody.style.filter = 'blur(5px)';
+    favouriteBody.style.filter = 'blur(5px)';
+})
+
+const mobileMenuCloseButton = document.querySelector('.mobile-menu-close-button');
+
+mobileMenuCloseButton.addEventListener('click', () => {
+    navUL.classList.remove('active');
+    homeContainer.style.zIndex = '1';
+    searchBody.style.zIndex = '1';
+    watchlistBody.style.zIndex = '1';
+    favouriteBody.style.zIndex = '1';
+    websiteLogo.style.filter = 'blur(0px)';
+    footer.style.filter = 'blur(0px)';
+    homeContainer.style.filter = 'blur(0px)';
+    searchBody.style.filter = 'blur(0px)';
+    watchlistBody.style.filter = 'blur(0px)';
+    favouriteBody.style.filter = 'blur(0px)';
+})
 
 
 // voice search
@@ -70,6 +109,7 @@ const searchSlogon = document.querySelector('.search-slogon');
 function userInput() {
     searchInput.addEventListener('input', () => {
         searchBody.style.height = "90vh";
+
         if (searchInput.value == "") {
             moviesCardContainer.style.display = "none";
         } else {
@@ -111,7 +151,6 @@ home.addEventListener('click', () => {
 });
 
 search.addEventListener('click', () => {
-
     search.classList.add('active');
     home.classList.remove('active');
     watchlist.classList.remove('active');
@@ -178,7 +217,6 @@ function renderMovies(movies) {
         fetch(`https://www.omdbapi.com/?i=${movies[i].imdbID}&apikey=72b8c020`)
         .then(response => response.json())
         .then(function(data) {
-            console.log(data);
 
             // movie genre
             if (data.Genre == "N/A") {
@@ -231,6 +269,14 @@ function renderMovies(movies) {
             renderCard(element, data);
             moviesCardContainer.appendChild(element);
         })
+        .catch(err =>
+            `
+                <div class="error">
+                    <h1>404 error Something went wrong!</h1>
+                    <p>${err}</p>
+                </div>
+            `
+        );
     }
 }
 
@@ -402,6 +448,11 @@ if(watchlistLocalStorage == null) {
 }
 
 function addMovieToWatchlist(movieId) {
+    if (watchlistLocalStorage.includes(movieId)) {
+        warningNoty("Movie removed from Watchlist");
+    } else {
+        successNoty("Movie added to Watchlist");
+    }
 
     if (movieMoreInfoContainer.style.opacity == "1") {
         const movieMoreInfoWatchlistButton = document.getElementById(`_watchlist-button-${movieId}`);
@@ -486,6 +537,12 @@ if(favouriteListLocalStorage == null) {
 }
 
 function addMovieToFavouriteList(movieId) {
+
+    if (favouriteListLocalStorage.includes(movieId)) {
+        warningNoty("Movie removed from favoritelist");
+    } else {
+        successNoty("Movie added to favoritelist");
+    }
 
     if (movieMoreInfoContainer.style.opacity == "1") {
         const movieMoreInfoFavoritelistButton = document.getElementById(`_favoriteslist-button-${movieId}`);
@@ -919,28 +976,20 @@ function renderMovieMoreInfo(element, data, movieRating) {
     `
 }
 
+function successNoty(msg) {
+    console.log('toast');
+    iziToast.success({
+      title: msg,
+    //   message: 'This is an Izzi Toast notification!',
+      position: 'bottomRight',
+    });
+}
 
-const mobileMenuButton = document.querySelector('.mobile-navbar-button');
-const navUL = document.querySelector('.nav-ul');
-
-mobileMenuButton.addEventListener('click', () => {
-    navUL.classList.toggle('active');
-    searchBody.style.zIndex = '-1';
-    watchlistBody.style.zIndex = '-1';
-    favouriteBody.style.zIndex = '-1';
-})
-
-const mobileMenuCloseButton = document.querySelector('.mobile-menu-close-button');
-
-mobileMenuCloseButton.addEventListener('click', () => {
-    navUL.classList.remove('active');
-    searchBody.style.zIndex = '1';
-    watchlistBody.style.zIndex = '1';
-    favouriteBody.style.zIndex = '1';
-})
-
-
-
-document.addEventListener('click', (e) => {
-    console.log(e.target);
-})
+function warningNoty(msg) {
+    console.log('toast');
+    iziToast.warning({
+      title: msg,
+    //   message: 'This is an Izzi Toast notification!',
+      position: 'bottomRight',
+    });
+}
