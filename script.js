@@ -7,7 +7,6 @@ const apiUrl = "https://www.omdbapi.com/?s=";
 const apiKey = "&apikey=72b8c020";
 // const apiKey = "&apikey=500472f0";
 
-
 // website logo 
 const websiteLogo = document.querySelector('.website-logo');
 const footer = document.querySelector('footer');
@@ -15,7 +14,6 @@ const footer = document.querySelector('footer');
 websiteLogo.addEventListener('click', () => {
     window.location.reload();
 });
-
 
 // moblie navbar
 const mobileMenuButton = document.querySelector('.mobile-navbar-button');
@@ -52,7 +50,6 @@ function closeNavMenu() {
         favouriteBody.style.filter = 'blur(0px)';
 }
 
-
 // voice search
 const searchInput = document.getElementById('search-input');
 const voiceSearch = document.querySelector('.mic-search-icon-container');
@@ -82,7 +79,6 @@ voiceSearch.addEventListener('click', () => {
     }
 });
 
-
 // fetch movies through api
 async function fetchMovies() {
     const response = await fetch(apiUrl + `${searchInput.value.trim()}` + apiKey);
@@ -97,7 +93,6 @@ async function fetchMovies() {
         renderMovies(data.Search);
     }
 }
-
 
 // fetch user input
 const searchbarContainer = document.querySelector('.searchbar-container');
@@ -122,7 +117,6 @@ function userInput() {
     });
 }
 userInput();
-
 
 // navbar controllers
 const home = document.querySelector('.home');
@@ -195,7 +189,6 @@ contactUs.addEventListener('click', () => {
     closeNavMenu();
 });
 
-
 // home page
 const homeSearchButton = document.querySelector('.home-search-button');
 
@@ -208,7 +201,6 @@ homeSearchButton.addEventListener('click', () => {
     searchBody.classList.add('active');
     homeContainer.classList.remove('active');
 });
-
 
 // movies card
 function renderMovies(movies) {
@@ -262,7 +254,6 @@ function renderMovies(movies) {
                 data.Rated = data.Rated;
             }
             
-            
             // adding movie card
             const element = document.createElement('div');
             element.classList.add('movie-card');
@@ -280,7 +271,6 @@ function renderMovies(movies) {
         );
     }
 }
-
 
 // function to get the movie more info
 function moreInfo(imdbID) {
@@ -420,7 +410,6 @@ function moreInfo(imdbID) {
     })
 }
 
-
 // function to close more info
 function closeMoreInfo() {
     movieMoreInfoContainer.style.opacity = "0";
@@ -439,7 +428,6 @@ function closeMoreInfo() {
     moviesCardContainer.style.pointerEvents = "auto";
     movieMoreInfoContainer.innerHTML = "";
 }
-
 
 // funtion to store watchlist in local storage
 let watchlistLocalStorage = JSON.parse(localStorage.getItem('watchlistLocalStorage'));
@@ -538,7 +526,6 @@ if(favouriteListLocalStorage == null) {
 }
 
 function addMovieToFavouriteList(movieId) {
-
     if (favouriteListLocalStorage.includes(movieId)) {
         warningNoty("Movie removed from favoritelist");
     } else {
@@ -618,8 +605,6 @@ function showFavouriteList() {
     }
 }
 showFavouriteList();
-
-
 
 // console the developer info
 console.log("%c Hey! it's Ankit Vishwakarma,", "color : #00000; font-size : 1rem; font-weight : bold;");
