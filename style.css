@@ -70,46 +70,67 @@ nav {
     align-items: center;
 }
 
-ul {
+.nav-ul {
     color: white;
     display: flex;
     font-size: 0.8em;
 }
 
-ul a {
+.nav-ul a {
     text-decoration: none;
     color: white;
 }
 
-li {
+.nav-ul li {
     margin: 20px;
     cursor: pointer;
     font-weight: 600;
 }
 
-.nav-menu-button {
+.mobile-navbar-button {
     width: 20px;
     height: 20px;
+    filter: brightness(0) invert(1);
     display: none;
 }
 
-#home.active {
+.mobile-menu-close-button {
+    position: absolute;
+    top: 5%;
+    right: 7%;
+}
+
+/* .mobile-navbar-container {
+    position: absolute;
+    top: 35%;
+    right: 10%;
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    z-index: 1;
+    transition: all 0.5s ease-in-out;
+    display: none;
+} */
+
+.home.active {
     color: red;
 }
 
-#search.active {
+.search.active {
     color: red;
 }
 
-#watchlist.active {
+.watchlist.active {
     color: red;
 }
 
-#favourite.active {
+.favourite.active {
     color: red;
 }
 
-#contact-us.active {
+.contact-us.active {
     color: red;
 }
 
@@ -909,13 +930,72 @@ footer {
         height: 50px;
     }
 
-    ul {
+    .nav-ul {
+        position: absolute;
+        top: 35%;
+        right: 10%;
+        width: 150px;
+        height: 200px;
+        border-radius: 10px;
+        background-color: black;
+        color: white;
+        z-index: 1;
+        transition: all 0.5s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         display: none;
     }
 
-    .nav-menu-button {
+    .nav-ul.active {
+        display: flex;
+    }
+
+    .nav-ul li {
+        font-size: 0.7rem;
+        margin: 5px;
+    }
+
+    .mobile-navbar-button {
         display: block;
     }
+
+    /* .mobile-navbar-ul li {
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+
+    .mobile-navbar-ul li a {
+        color: white;
+    }
+
+    .mobile-navbar-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+
+    .mobile-navbar-container.active {
+        display: flex;
+    }
+
+    .mobile-navbar-ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        display: none;
+    }
+
+    .mobile-navbar-ul.active {
+        display: flex;
+    }
+
+    .mobile-navbar-ul li {
+        margin: 5px;
+    } */
 
     .slogon-p {
         font-size: 0.6rem;
@@ -972,7 +1052,7 @@ footer {
 
     .card {
         width: 70vw;
-        height: 65vh;
+        height: 50vh;
     }
 
     .no-poster-card {

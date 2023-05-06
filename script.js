@@ -85,11 +85,11 @@ userInput();
 
 
 // navbar controllers
-const home = document.getElementById('home');
-const search = document.getElementById('search');
-const watchlist = document.getElementById('watchlist');
-const favourite = document.getElementById('favourite');
-const contactUs = document.getElementById('contact-us');
+const home = document.querySelector('.home');
+const search = document.querySelector('.search');
+const watchlist = document.querySelector('.watchlist');
+const favourite = document.querySelector('.favourite');
+const contactUs = document.querySelector('.contact-us');
 
 const homeContainer = document.querySelector('.home-container');
 const searchBody = document.querySelector('.search-body');
@@ -98,6 +98,7 @@ const favouriteBody = document.querySelector('.favourite-body');
 
 
 home.addEventListener('click', () => {
+    console.log('home clicked');
     home.classList.add('active');
     search.classList.remove('active');
     watchlist.classList.remove('active');
@@ -110,6 +111,7 @@ home.addEventListener('click', () => {
 });
 
 search.addEventListener('click', () => {
+
     search.classList.add('active');
     home.classList.remove('active');
     watchlist.classList.remove('active');
@@ -916,3 +918,29 @@ function renderMovieMoreInfo(element, data, movieRating) {
         </div>
     `
 }
+
+
+const mobileMenuButton = document.querySelector('.mobile-navbar-button');
+const navUL = document.querySelector('.nav-ul');
+
+mobileMenuButton.addEventListener('click', () => {
+    navUL.classList.toggle('active');
+    searchBody.style.zIndex = '-1';
+    watchlistBody.style.zIndex = '-1';
+    favouriteBody.style.zIndex = '-1';
+})
+
+const mobileMenuCloseButton = document.querySelector('.mobile-menu-close-button');
+
+mobileMenuCloseButton.addEventListener('click', () => {
+    navUL.classList.remove('active');
+    searchBody.style.zIndex = '1';
+    watchlistBody.style.zIndex = '1';
+    favouriteBody.style.zIndex = '1';
+})
+
+
+
+document.addEventListener('click', (e) => {
+    console.log(e.target);
+})
