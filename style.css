@@ -95,6 +95,14 @@ nav {
     display: none;
 }
 
+.fa-xmark {
+    font-size: 1rem;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    display: none;
+}
+
 .home.active {
     color: red;
 }
@@ -984,6 +992,10 @@ footer {
         height: 50px;
     }
 
+    .fa-xmark {
+        display: block;
+    }
+
     .nav-ul {
         position: absolute;
         top: 35%;
@@ -1085,8 +1097,8 @@ footer {
     }
 
     .no-poster-card {
-        width: 70vw;
-        height: 65vh;
+        width: 260px;
+        height: 400px;
     }
 
     .movie-year-rating-container {

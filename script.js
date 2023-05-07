@@ -3,6 +3,7 @@ const navContainer = document.querySelector('.nav-container');
 const watchlistCardContainer = document.querySelector('.watchlist-card-container');
 const favouritelistCardContainer = document.querySelector('.favourite-card-container');
 
+
 const apiUrl = "https://www.omdbapi.com/?s=";
 const apiKey = "&apikey=72b8c020";
 // const apiKey = "&apikey=500472f0";
@@ -18,6 +19,7 @@ websiteLogo.addEventListener('click', () => {
 // moblie navbar
 const mobileMenuButton = document.querySelector('.mobile-navbar-button');
 const navUL = document.querySelector('.nav-ul');
+const navMenuCloseButton = document.querySelector('.fa-xmark ');
 
 
 mobileMenuButton.addEventListener('click', () => {
@@ -35,6 +37,10 @@ mobileMenuButton.addEventListener('click', () => {
     watchlistBody.style.filter = 'blur(5px)';
     favouriteBody.style.filter = 'blur(5px)';
 })
+
+navMenuCloseButton.addEventListener('click', () => {
+    closeNavMenu();
+});
 
 function closeNavMenu() {
         navUL.classList.remove('active');
