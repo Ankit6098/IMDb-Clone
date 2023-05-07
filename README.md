@@ -1,5 +1,4 @@
-# IMDB-Clone
-
+# IMDB-Clone Javascript
 
 ## Documentation
 
