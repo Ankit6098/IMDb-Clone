@@ -54,9 +54,26 @@ Run the Application
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+// Desktop & Laptop
 
+![image](https://user-images.githubusercontent.com/92246613/236679352-5e3b6e77-3258-41c3-a405-245810be1f27.png)
+![image](https://user-images.githubusercontent.com/92246613/236679356-5f7918e6-3740-48b9-aa67-1ed704baf3d9.png)
+![image](https://user-images.githubusercontent.com/92246613/236679359-71cdca8d-a2ab-4bed-9ba4-67c6af5a0b71.png)
+![image](https://user-images.githubusercontent.com/92246613/236679365-67bcb101-c435-48a9-a91d-dd5250cbff9d.png)
+![image](https://user-images.githubusercontent.com/92246613/236679369-9a96cffe-3fd8-4a6d-b59a-b317a526833b.png)
 
+// Tab
+
+![image](https://user-images.githubusercontent.com/92246613/236679382-45233551-d5bf-40bc-b63e-7b38d4a7530f.png)
+![image](https://user-images.githubusercontent.com/92246613/236679388-7acb4b51-26dc-4072-9806-a3bbbb61287a.png)
+![image](https://user-images.githubusercontent.com/92246613/236679399-1f7eac2d-69f2-48f6-916e-691af9031c8e.png)
+![image](https://user-images.githubusercontent.com/92246613/236679568-0f5a8607-3bb0-4e4e-9bd8-8535871b20a1.png)
+
+// Mobile
+
+![image](https://user-images.githubusercontent.com/92246613/236679415-ee05d270-9196-4c0c-b444-46bc70fea4e2.png)
+![image](https://user-images.githubusercontent.com/92246613/236679477-b7a10b53-f8ff-4246-baca-8db2270c773f.png)
+![image](https://user-images.githubusercontent.com/92246613/236679422-5301cc43-e1aa-4142-ac5e-d729af80513d.png)
 
 
 ## Related
