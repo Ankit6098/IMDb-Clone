@@ -7,6 +7,7 @@ const apiUrl = "https://www.omdbapi.com/?s=";
 const apiKey = "&apikey=72b8c020";
 // const apiKey = "&apikey=500472f0";
 
+
 // website logo 
 const websiteLogo = document.querySelector('.website-logo');
 const footer = document.querySelector('footer');
@@ -979,10 +980,3 @@ function warningNoty(msg) {
       position: 'topRight',
     });
 }
-
-const setVh = () => {
-    let vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-};
-setVh();
-window.addEventListener('resize', setVh);
