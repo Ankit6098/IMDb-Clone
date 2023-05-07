@@ -501,7 +501,7 @@ input:focus {
     height: 55vh;
     display: flex;
     justify-content: center;
-    align-items: start;
+    align-items: center;
 }
 
 .movie-more-info-image {
@@ -678,6 +678,12 @@ input:focus {
     flex-wrap: wrap;
 }
 
+.no-movie-in-watchlist-text {
+    color: white;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
 
 /* favourite section */
 
@@ -714,33 +720,10 @@ input:focus {
     flex-wrap: wrap;
 }
 
-.no-movie-in-watchlist-text {
-    color: white;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-}
-
 .no-movie-in-favouriteList-text {
     color: white;
     font-size: 0.9rem;
     letter-spacing: 1px;
-}
-
-.favourite-movie-card {
-    width: 15vw;
-    height: 45vh;
-    background-color: #1a1a1a;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    box-shadow: 10px 10px 20px #000000;
-    position: relative;
-    transition: all 0.3s ease-in-out;
-}
-
-.favourite-movie-card:hover {
-    transform: scale(1.01);
 }
 
 .watchlist-button-image {
@@ -1143,15 +1126,6 @@ footer {
         width: 90%;
         height: 100%;
         padding: 10px;
-    }
-
-    /* watchlist */
-
-    .watchlist-card-container {
-        flex-direction: column;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
     }
 
     .developer-name {
