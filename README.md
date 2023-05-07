@@ -72,7 +72,7 @@ Run the Application
 // Mobile
 
 ![image](https://user-images.githubusercontent.com/92246613/236679415-ee05d270-9196-4c0c-b444-46bc70fea4e2.png)
-![image](https://user-images.githubusercontent.com/92246613/236679418-d99b7c8a-a912-4aa7-b437-141192249dd6.png)
+![image](https://user-images.githubusercontent.com/92246613/236679477-b7a10b53-f8ff-4246-baca-8db2270c773f.png)
 ![image](https://user-images.githubusercontent.com/92246613/236679422-5301cc43-e1aa-4142-ac5e-d729af80513d.png)
 
 
