@@ -7,7 +7,6 @@ const apiUrl = "https://www.omdbapi.com/?s=";
 const apiKey = "&apikey=72b8c020";
 // const apiKey = "&apikey=500472f0";
 
-
 // website logo 
 const websiteLogo = document.querySelector('.website-logo');
 const footer = document.querySelector('footer');
@@ -572,7 +571,7 @@ function showFavouriteList() {
     if (favouriteListLocalStorage.length == "") {
         favouritelistCardContainer.innerHTML = `
             <div class="no-movie-in-favouriteList-container">
-                <h2 class="no-movie-in-favouriteList-text">No Movie in FavourList</h2>
+                <h2 class="no-movie-in-favouriteList-text">No Movie in FavouriteList</h2>
             </div>
         `
     } else {
@@ -967,7 +966,6 @@ function successNoty(msg) {
     console.log('toast');
     iziToast.success({
       title: msg,
-    //   message: 'This is an Izzi Toast notification!',
       position: 'topRight',
     });
 }
@@ -976,7 +974,6 @@ function warningNoty(msg) {
     console.log('toast');
     iziToast.warning({
       title: msg,
-    //   message: 'This is an Izzi Toast notification!',
       position: 'topRight',
     });
 }
