@@ -67,7 +67,7 @@ Run the Application
 ![image](https://user-images.githubusercontent.com/92246613/236679382-45233551-d5bf-40bc-b63e-7b38d4a7530f.png)
 ![image](https://user-images.githubusercontent.com/92246613/236679388-7acb4b51-26dc-4072-9806-a3bbbb61287a.png)
 ![image](https://user-images.githubusercontent.com/92246613/236679399-1f7eac2d-69f2-48f6-916e-691af9031c8e.png)
-![image](https://user-images.githubusercontent.com/92246613/236679391-ca37a2b3-cfb5-447d-9ecc-1c738cdf0e01.png)
+![image](https://user-images.githubusercontent.com/92246613/236679568-0f5a8607-3bb0-4e4e-9bd8-8535871b20a1.png)
 
 // Mobile
 
