@@ -115,8 +115,8 @@ function userInput() {
             searchbarContainer.style.marginBottom = "50px";
         } else {
             searchbarContainer.style.marginTop = "0px";
-            searchSlogon.style.display = "none";
             searchbarContainer.style.marginBottom = "0px";
+            searchSlogon.style.display = "none";
             moviesCardContainer.style.display = "flex";
         }
         fetchMovies();
@@ -969,7 +969,6 @@ function renderMovieMoreInfo(element, data, movieRating) {
 }
 
 function successNoty(msg) {
-    console.log('toast');
     iziToast.success({
       title: msg,
       position: 'topRight',
@@ -977,7 +976,6 @@ function successNoty(msg) {
 }
 
 function warningNoty(msg) {
-    console.log('toast');
     iziToast.warning({
       title: msg,
       position: 'topRight',
