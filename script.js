@@ -107,17 +107,17 @@ const searchSlogon = document.querySelector('.search-slogon');
 
 function userInput() {
     searchInput.addEventListener('input', () => {
-        searchBody.style.height = "90vh";
-
         if (searchInput.value == "") {
+            searchBody.style.height = "70vh";
+            searchSlogon.style.display = "flex";
             moviesCardContainer.style.display = "none";
-            searchSlogon.style.display = "block";
             searchbarContainer.style.marginBottom = "50px";
         } else {
+            searchBody.style.height = "90vh";
             searchbarContainer.style.marginTop = "0px";
-            searchbarContainer.style.marginBottom = "0px";
             searchSlogon.style.display = "none";
             moviesCardContainer.style.display = "flex";
+            moviesCardContainer.style.marginTop = "0px";
         }
         fetchMovies();
     });
@@ -628,8 +628,8 @@ function renderCard(element, data) {
                             <div onclick="addMovieToFavouriteList('${data.imdbID}')" class="like-container">
                                 <img class="like-image active" id="_favouritelistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/210/210545.png"></img>
                             </div>
-                            <div onclick="addMovieToWatchlist('${data.imdbID}')"class="watchlist-button-container">
-                                <img class="watchlist-button-image active" id="_watchlistIcon-${data.imdbID}"src="https://cdn-icons-png.flaticon.com/512/786/786453.png"></img>
+                            <div onclick="addMovieToWatchlist('${data.imdbID}')" class="watchlist-button-container">
+                                <img class="watchlist-button-image active" id="_watchlistIcon-${data.imdbID}" src="https://cdn-icons-png.flaticon.com/512/786/786453.png"></img>
                             </div>
                         </div>
                         <div class="movie-title-container" onclick="moreInfo('${data.imdbID}')">
