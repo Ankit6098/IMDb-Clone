@@ -4,7 +4,7 @@
 
 [Documentation](https://linktodocumentation)
 
-<img width="40px" height="20px" src="https://cdn-icons-png.flaticon.com/512/5977/5977585.png"/> FrontEnd IMDb Clone Javascript
+<img width="40px" height="40px" src="https://cdn-icons-png.flaticon.com/512/5977/5977585.png"/> FrontEnd IMDb Clone Javascript
 
 "IMDb Clone" is a visually captivating website inspired by the renowned IMDb platform. Developed using HTML, eye-catching CSS, and dynamic JavaScript, this stunning clone fetches real-time data through APIs to provide an immersive and engaging user experience. With its visually appealing design, visitors are instantly drawn to the website's sleek interface and intuitive navigation. Users can seamlessly browse through an extensive collection of movies, TV shows, actors, and more, accessing detailed information, ratings, and reviews. The IMDB Clone's powerful search functionality and advanced filtering options enable users to effortlessly discover their favorite content. Whether it's exploring new releases, researching actors, or reading plot summaries, this IMDb-inspired clone delivers an enthralling and user-friendly experience that keeps movie enthusiasts hooked.
 
