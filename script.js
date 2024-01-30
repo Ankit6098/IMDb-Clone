@@ -96,7 +96,7 @@ async function fetchMovies() {
         </div>
         `;
     } else {
-        renderMovies(data.Search);
+        renderMovies(data);
     }
 }
 
